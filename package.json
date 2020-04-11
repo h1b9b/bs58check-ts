@@ -4,7 +4,7 @@
   "main": "dist/bs58check-ts.cjs.js",
   "module": "dist/bs58check-ts.esm.js",
   "browser": "dist/bs58check-ts.umd.js",
-  "types": "dist/bs58check-ts.d.ts",
+  "types": "dist/main.d.ts",
   "dependencies": {
     "@types/bs58": "^4.0.1",
     "bs58": "^4.0.1"
@@ -18,6 +18,7 @@
     "jest": "^25.3.0",
     "rollup": "^2.6.0",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-dts": "^1.3.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript2": "^0.27.0",
     "ts-jest": "^25.3.1",
@@ -29,7 +30,8 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "test": "jest --coverage",
-    "pretest": "npm run build"
+    "pretest": "npm run build",
+    "prepare": "npm run build"
   },
   "files": [
     "dist"

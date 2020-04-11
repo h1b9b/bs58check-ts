@@ -1,6 +1,6 @@
 import bs58 from 'bs58';
 
-export default class Bs58Safe {
+export default class Bs58Check {
   checksumFn: Function;
 
   constructor(checksumFn: Function) {

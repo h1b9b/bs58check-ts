@@ -1,5 +1,5 @@
 import { createHash } from "crypto";
-import Bs58Safe from './bs58safe';
+import Bs58Check from './bs58check';
 
 // SHA256(SHA256(buffer))
 function sha256x2 (buffer: any): Buffer {
@@ -7,4 +7,4 @@ function sha256x2 (buffer: any): Buffer {
   return createHash('sha256').update(tmp).digest();
 }
 
-export default new Bs58Safe(sha256x2);
+export default new Bs58Check(sha256x2);
