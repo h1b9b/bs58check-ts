@@ -17,7 +17,11 @@ export default [
 		output: {
 			name: 'bs58check-ts',
 			file: pkg.browser,
-			format: 'umd'
+			format: 'umd',
+			globals: {
+				crypto: 'crypto',
+				buffer: 'buffer',
+			}
 		}
 	},
 
