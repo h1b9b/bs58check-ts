@@ -5,6 +5,9 @@
   "module": "dist/bs58check-ts.esm.js",
   "browser": "dist/bs58check-ts.umd.js",
   "types": "dist/main.d.ts",
+  "author": {
+    "name": "@h1b9b",
+  },
   "dependencies": {
     "@types/bs58": "^4.0.1",
     "bs58": "^4.0.1"
