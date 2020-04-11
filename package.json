@@ -9,6 +9,10 @@
     "@types/bs58": "^4.0.1",
     "bs58": "^4.0.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/h1b9b/bs58check-ts"
+  },
   "devDependencies": {
     "@types/jest": "^25.2.1",
     "jest": "^25.3.0",
