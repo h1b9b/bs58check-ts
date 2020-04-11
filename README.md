@@ -2,8 +2,8 @@
 
 A quick implementation of base58check extending upon bs58 in TS.
 
+### Example
 ```js
-Example
 import bs58safe from 'bs58safe')
 
 console.log(bs58safe.decode('5Kd3NBUAdUnhyzenEwVLy9pBKxSwXvE9FMPyR4UKZvpe6E3AgLr'))
