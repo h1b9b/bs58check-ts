@@ -1,6 +1,6 @@
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import typescript from 'rollup-plugin-typescript';
+import typescript from 'rollup-plugin-typescript2';
 
 import pkg from './package.json';
 
@@ -18,6 +18,7 @@ export default [
 			name: 'bs58check-ts',
 			file: pkg.browser,
 			format: 'umd',
+			sourcemap: true,
 			globals: {
 				crypto: 'crypto',
 				buffer: 'buffer',
@@ -35,7 +36,10 @@ export default [
 		input: 'src/main.ts',
 		external: ['bs58', 'crypto'],
 		plugins: [
-			typescript() // so Rollup can convert TypeScript to JavaScript
+			typescript({
+				rollupCommonJSResolveHack: false,
+				clean: true,
+			}) // so Rollup can convert TypeScript to JavaScript
 		],
 		output: [
 			{ file: pkg.main, format: 'cjs' },
