@@ -1,8 +1,8 @@
 # Bs58Check Typescript
 
-![CI](https://github.com/h1b9b/bs58check-ts/workflows/CI/badge.svg?branch=master)
-
 A quick implementation of base58check extending upon bs58 in TS.
+
+![CI](https://github.com/h1b9b/bs58check-ts/workflows/CI/badge.svg?branch=master)
 
 ### Example
 ```js

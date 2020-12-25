@@ -1,46 +1,62 @@
+import { createHash, BinaryLike } from 'crypto';
 import bs58 from 'bs58';
 
-export default class Bs58Check {
-  checksumFn: Function;
+type ChecksumFn = (buffer: BinaryLike) => Buffer;
 
-  constructor(checksumFn: Function) {
+class Bs58Check {
+  checksumFn: ChecksumFn;
+
+  constructor(checksumFn: ChecksumFn) {
     this.checksumFn = checksumFn;
   }
 
-  encode(payload: any) {
-    const checksum = this.checksumFn(payload)
+  encode(payload: Buffer): string {
+    const checksum = this.checksumFn(payload);
 
     return bs58.encode(Buffer.concat([
       payload,
       checksum
-    ], payload.length + 4))
+    ], payload.length + 4));
   }
 
-  decodeRaw(buffer: Buffer): any {
-    const payload = buffer.slice(0, -4)
-    const checksum = buffer.slice(-4)
-    const newChecksum = this.checksumFn(payload)
+  decodeRaw(buffer: Buffer): Buffer | undefined {
+    const payload = buffer.slice(0, -4);
+    const checksum = buffer.slice(-4);
+    const newChecksum = this.checksumFn(payload);
 
     if (checksum[0] ^ newChecksum[0] |
         checksum[1] ^ newChecksum[1] |
         checksum[2] ^ newChecksum[2] |
-        checksum[3] ^ newChecksum[3]) return
+        checksum[3] ^ newChecksum[3]) return;
 
-    return payload
+    return payload;
   }
 
   // Decode a bs58-check encoded string to a buffer, no result if checksum is wrong
-  decodeUnsafe(string: string): any {
-    var buffer = bs58.decodeUnsafe(string)
-    if (!buffer) return
+  decodeUnsafe(string: string): Buffer | undefined {
+    const buffer = bs58.decodeUnsafe(string);
+    if (!buffer) return;
 
-    return this.decodeRaw(buffer)
+    return this.decodeRaw(buffer);
   }
 
-  decode(string: string): any {
-    var buffer = bs58.decode(string)
-    var payload = this.decodeRaw(buffer)
-    if (!payload) throw new Error('Invalid checksum')
-    return payload
+  decode(string: string): Buffer {
+    const buffer = bs58.decode(string);
+    const payload = this.decodeRaw(buffer);
+    if (!payload) throw new Error('Invalid checksum');
+    return payload;
   }
 }
+
+// SHA256(SHA256(buffer))
+function sha256x2(buffer: BinaryLike): Buffer {
+  const tmp = createHash('sha256').update(buffer).digest();
+  return createHash('sha256').update(tmp).digest();
+}
+
+const bs58safe = new Bs58Check(sha256x2);
+
+export {
+  Bs58Check,
+  bs58safe
+};

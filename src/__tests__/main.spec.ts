@@ -1,10 +1,10 @@
-import bs58safe from "../src/main";
-import { valid, invalid } from './fixtures.json'
+import { bs58safe } from '../bs58check';
+import { valid, invalid } from './fixtures.json';
 
 /**
  * bs58safe encode and decode tests 
  */
-describe("Base58 check", () => {
+describe('Base58 check', () => {
   describe('decode', () => {
     it('decode string to hex', () => {
       valid.forEach(({ string, payload }: { string: string, payload: string}) => {
@@ -14,7 +14,7 @@ describe("Base58 check", () => {
 
     it('unsafely decode string to hex', () => {
       valid.forEach(({ string, payload }: { string: string, payload: string}) => {
-        expect(bs58safe.decodeUnsafe(string).toString('hex')).toBe(payload);
+        expect(bs58safe.decodeUnsafe(string)?.toString('hex')).toBe(payload);
       });
     });
 
