@@ -18,7 +18,6 @@ export default [
       name: 'bs58check-ts',
       file: pkg.browser,
       format: 'umd',
-      sourcemap: true,
       globals: {
         crypto: 'crypto',
         buffer: 'buffer',
@@ -42,8 +41,8 @@ export default [
       }) // so Rollup can convert TypeScript to JavaScript
     ],
     output: [
-      { file: pkg.main, format: 'cjs', sourcemap: true },
-      { file: pkg.module, format: 'es', sourcemap: true }
+      { file: pkg.main, format: 'cjs' },
+      { file: pkg.module, format: 'es' }
     ]
   }
 ];
