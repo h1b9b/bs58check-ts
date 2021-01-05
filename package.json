@@ -1,6 +1,6 @@
 {
   "name": "bs58check-ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "main": "dist/bs58check-ts.cjs.js",
   "module": "dist/bs58check-ts.esm.js",
