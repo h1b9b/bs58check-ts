@@ -5,7 +5,7 @@
   "main": "dist/bs58check-ts.cjs.js",
   "module": "dist/bs58check-ts.esm.js",
   "browser": "dist/bs58check-ts.umd.js",
-  "types": "dist/main.d.ts",
+  "types": "dist/bs58check.d.ts",
   "author": {
     "name": "@h1b9b"
   },
