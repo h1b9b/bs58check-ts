@@ -60,3 +60,4 @@ export {
   Bs58Check,
   bs58safe
 };
+export default bs58safe;
