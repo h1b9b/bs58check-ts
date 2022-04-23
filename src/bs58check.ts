@@ -34,15 +34,14 @@ class Bs58Check {
 
   // Decode a bs58-check encoded string to a buffer, no result if checksum is wrong
   decodeUnsafe(string: string): Buffer | undefined {
-    const buffer = bs58.decodeUnsafe(string);
-    if (!buffer) return;
+    const decoded = bs58.decodeUnsafe(string);
+    if (!decoded) return;
 
-    return this.decodeRaw(buffer);
+    return this.decodeRaw(Buffer.from(decoded));
   }
 
   decode(string: string): Buffer {
-    const buffer = bs58.decode(string);
-    const payload = this.decodeRaw(buffer);
+    const payload = this.decodeRaw(Buffer.from(bs58.decode(string)));
     if (!payload) throw new Error('Invalid checksum');
     return payload;
   }
