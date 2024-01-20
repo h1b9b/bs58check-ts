@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/h1b9b/bs58check-ts"
+    "url": "git+https://github.com/h1b9b/bs58check-ts.git"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
