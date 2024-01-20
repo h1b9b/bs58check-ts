@@ -20,8 +20,8 @@ class Bs58Check {
   }
 
   decodeRaw(buffer: Buffer): Buffer | undefined {
-    const payload = buffer.slice(0, -4);
-    const checksum = buffer.slice(-4);
+    const payload = buffer.subarray(0, -4);
+    const checksum = buffer.subarray(-4);
     const newChecksum = this.checksumFn(payload);
 
     if (checksum[0] ^ newChecksum[0] |
